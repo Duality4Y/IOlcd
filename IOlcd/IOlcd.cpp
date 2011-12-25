@@ -190,24 +190,7 @@ void IOlcd::setCursor(uint8_t x, uint8_t y){
 	}
 }
 
-void IOlcd::print(char* arrayc){
-	int linelength = strlen(arrayc);
-	for(int i=0;i<linelength;i++){
-		write(arrayc[i]);
-	}
-}
-
-void IOlcd::print(int arrayc){
-	int declength = sizeof(arrayc);
-	char value2[declength];
-	itoa(arrayc,value2,10);
-	int linelength = strlen(value2);
-	for(int i=0;i<linelength;i++){
-		write(value2[i]);
-	}
-}
-
-void IOlcd::write(uint8_t c){
+inline void IOlcd::write(uint8_t c){
 	c = byteShift(c);
 	Wire.beginTransmission(addr);
 	Wire.send(0x00);
