@@ -48,10 +48,8 @@ class IOlcd : public Print {
 	void begin(uint8_t cols, uint8_t lines);
 	virtual void write(uint8_t c);
 	void setCursor(uint8_t x, uint8_t y);
-	
+	void createChar(uint8_t location, uint8_t charmap[]);
     bool init(uint8_t address, uint8_t device_type);
-	bool pinMode(uint8_t port, uint8_t pin, bool mode);
-	bool pinModePort(uint8_t port, bool mode);
 	
   private:
     uint8_t addr;
@@ -65,6 +63,8 @@ class IOlcd : public Print {
 	
 	bool refresh();
 	bool sendData();
+	bool pinMode(uint8_t port, uint8_t pin, bool mode);
+	bool pinModePort(uint8_t port, bool mode);
 	void writeCommand(uint8_t command);
 	int byteShift(int num);
 };

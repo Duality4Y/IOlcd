@@ -190,6 +190,14 @@ void IOlcd::setCursor(uint8_t x, uint8_t y){
 	}
 }
 
+void IOlcd::createChar(uint8_t location, uint8_t charmap[]){
+	location &= 0x7;
+	writeCommand(0x40 | (location << 3));
+	for(int i=0; i<8;i++){
+		write(charmap[i]);
+	}
+}
+
 inline void IOlcd::write(uint8_t c){
 	c = byteShift(c);
 	Wire.beginTransmission(addr);

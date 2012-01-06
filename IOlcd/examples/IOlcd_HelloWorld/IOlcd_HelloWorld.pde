@@ -12,6 +12,8 @@ void setup(){
   lcd.begin(16,2);
   //at the begining of the first line.
   lcd.home();
+  //clear lcd just incase.
+  lcd.clear();
   //print hello world to the first line.
   lcd.print("Hello, World!");
 }
