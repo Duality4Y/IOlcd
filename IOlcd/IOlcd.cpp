@@ -142,10 +142,10 @@ void IOlcd::begin(uint8_t cols, uint8_t lines){
 	//tell we are bitmode 8 and 2 lines
 	writeCommand(0x38);
 	//wait a bit
-	delayMicroseconds(4500);
+	//delayMicroseconds(450); // if lcd screen does wierd uncomment this and the delay after this.
 	//try second time
 	writeCommand(0x38);
-	delayMicroseconds(1500);
+	//delayMicroseconds(150);
 	//third and last try
 	writeCommand(0x38);
 	
@@ -215,7 +215,7 @@ inline void IOlcd::write(uint8_t c){
 	Wire.send(B10000000);
 	Wire.endTransmission();
 	
-	delayMicroseconds(100);
+	//delayMicroseconds(100);
 	
 	Wire.beginTransmission(addr);
 	Wire.send(0x01);
@@ -240,14 +240,14 @@ void IOlcd::writeCommand(uint8_t command){
 	Wire.send(B00000000); //write pin E LOW
 	Wire.endTransmission();  
 	
-	delayMicroseconds(100);
+	//delayMicroseconds(100);
 	
 	Wire.beginTransmission(addr);
 	Wire.send(0x01);
 	Wire.send(B01000000); //write pin E HIGH
 	Wire.endTransmission();
 	
-	delayMicroseconds(40);
+	//delayMicroseconds(40);
 }
 
 //this is not my code,

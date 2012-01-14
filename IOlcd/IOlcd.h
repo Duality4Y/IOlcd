@@ -17,7 +17,7 @@
 #ifndef IOlcd_h
 #define IOlcd_h
 
-#include <Wire.h>;
+#include <Wire.h>
 #include <inttypes.h>
 #include "Print.h"
 

@@ -7,7 +7,7 @@ void setup(){
   //initialize the chip(MCP23016) at address 0x20.
   lcd.init(0x20, MCP23016)
   //start the lcd
-  lcd.begin(16,2,8);
+  lcd.begin(16,2);
   //start serial connection.
   Serial.begin(9800);
 }

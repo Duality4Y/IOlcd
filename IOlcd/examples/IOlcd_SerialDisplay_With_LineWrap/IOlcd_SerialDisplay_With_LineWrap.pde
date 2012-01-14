@@ -13,7 +13,7 @@ void setup(){
   else{
     Serial.println("Not connected propperly!");
   }
-  lcd.begin(16,2,8);
+  lcd.begin(16,2);
   lcd.clear();
 }
 
