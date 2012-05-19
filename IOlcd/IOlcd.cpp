@@ -1,5 +1,31 @@
+/*
+ * Sat May 19th 2012 1:43:22
+ * Perfected the way setCursor(); works, turns out i've been 
+ * addressing the lcd wrongly, and have found a solution that works for both
+ * 16x2 and 20x4 lcd's also I might be pretty sure that i can do these operation, 
+ * within this function in some kind of loop though.
+ * 
+ * Todo:
+ * -- still need to test and figure out if the library works with single line displays.
+ * -- I've got to figure out how to address these screens in 4 bit mode.
+ * -- Got to figure out how to make the library so that I don't have to include wiring.h in the sketch anymore.
+ * 
+ * Tips.
+ * If you got tips!
+ * I am happy to hear them!
+ * If you found somthing that doesn't work,
+ * Report it! or if you fixed it, make a not with date and info like above, and 
+ * send me the file, i'll review it and maybe add it,
+ * If your gonna use the library give credit where credit is due,
+ * That will be all to say for now, 
+ * * * Greetings!
+ * * * Duality!
+ * 
+ * irc @ freenode
+ * channels @ #tkkrlab (dutch channel) or #arduino.
+ * 
+ * */
 #include <IOlcd.h>
-
 #include <Wire.h>
 #include "WProgram.h"
 #include <stdio.h>
@@ -153,6 +179,8 @@ void IOlcd::begin(uint8_t cols, uint8_t lines){
 	writeCommand(0x0c);
 	writeCommand(0x06);
 	writeCommand(0x02);
+	//still need to figure out how to do 4 bit and initialize only single line
+	//displays.
 }
 
 void IOlcd::clear(){
@@ -180,13 +208,22 @@ void IOlcd::scrollDisplayRight(){
 }
 
 void IOlcd::setCursor(uint8_t x, uint8_t y){
+	int row_offsets[] = { 0x00, 0x40, 0x14, 0x54 };
 	if(y == 0){
 		home();
-		writeCommand(0x80+x);
+		writeCommand(0x80+row_offsets[y]+x);
 	}
 	if(y == 1){
 		home();
-		writeCommand(0x80+0x40+x);
+		writeCommand(0x80+row_offsets[y]+x);
+	}
+	if(y==2){
+		home();
+		writeCommand(0x80+row_offsets[y]+x);
+	}
+	if(y==3){
+		home();
+		writeCommand(0x80+row_offsets[y]+x);
 	}
 }
 
